@@ -8,6 +8,11 @@ DETAIL_TARGET = 8
 DETAIL_LIMIT = 10
 
 
+def within_analysis_hours(now, cutoff='15:15'):
+    """Check the weekday and configured request cutoff in exchange-local time."""
+    return now.weekday() < 5 and '10:00' <= now.strftime('%H:%M') < cutoff
+
+
 def has_time_for_detail(completed, durations, remaining):
     if remaining <= 0:
         return False
